@@ -6,8 +6,10 @@ class GameEngine {
         this.columns = canvas.width / blockSize
         this.ctx = ctx;
         const { x, y } = this.randomCoordinates();
-        this.snake = new Snake(0, 0, canvas, this.ctx, "#FF0000", blockSize);
+        this.snake = new Snake(0, 0, canvas, this.ctx, "#09BC8A", "#84A98C", blockSize);
         this.food = new Food(x, y, ctx, "#FF0000", blockSize);
+        this.currentScore = 0;
+        this.highestScore = 0;
         this.onKeyDown = this.onKeyDown.bind(this);
         this.gameLoop = this.gameLoop.bind(this);
 
@@ -36,7 +38,19 @@ class GameEngine {
             const { x, y } = this.randomCoordinates();
             this.food.x = x;
             this.food.y = y;
+            this.updateScore();
+            this.snake.total = this.currentScore;
         }
+    }
+
+    updateScore() {
+        this.currentScore++;
+        if (this.currentScore > this.highestScore) { this.highestScore = this.currentScore; }
+        const currentScore = document.getElementById("current-score");
+        const highestScore = document.getElementById("highest-score");
+
+        currentScore.textContent = `${this.currentScore}`
+        highestScore.textContent = `${this.highestScore}`
     }
 
     onKeyDown(e) {

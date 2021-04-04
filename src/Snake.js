@@ -1,10 +1,11 @@
 class Snake {
-    
-    constructor(x, y, canvas, ctx, color, blockSize) {
-        this.x = x;
+
+    constructor(x, y, canvas, ctx, headColor, tailColor, blockSize) {
+        this.x = 90;
         this.y = y;
-        this.blockSize;
-        this.color = color;
+        this.blockSize = blockSize;
+        this.headColor = headColor;
+        this.tailColor = tailColor;
         this.xSpeed = blockSize;
         this.ySpeed = 0;
         this.total = 0;
@@ -14,14 +15,12 @@ class Snake {
     }
 
     draw() {
-        this.ctx.fillStyle = this.color;
-        console.log("HERE!");
-        console.log(this.color)
-
         for (let i=0; i<this.tail.length; i++) {
+            this.ctx.fillStyle = this.tailColor;
             this.ctx.fillRect(this.tail[i].x, this.tail[i].y, this.blockSize, this.blockSize);
         }
 
+        this.ctx.fillStyle = this.headColor;
         this.ctx.fillRect(this.x, this.y, this.blockSize, this.blockSize);
     }
 

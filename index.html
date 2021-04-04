@@ -6,13 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game!</title>
     <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        .game-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
         canvas {
             background-color: gray;
+        }
+        .score-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            width: 300px;
         }
     </style>
 </head>
 <body>
-    <canvas id="game" width="400" height="400"></canvas>
+    <div class="game-container">
+        <h1>Let's Play Some Snake!</h1>
+        <canvas id="game" width="400" height="400"></canvas>
+        <div class="score-container">
+            <h3>Current Score: <span id="current-score">0</span></h3>
+            <h3>Highest Score: <span id="highest-score">0</span></h3>
+        </div>
+    </div>
     <script src="src/GameEngine.js"></script>
     <script src="src/Food.js"></script>
     <script src="src/Snake.js"></script>
