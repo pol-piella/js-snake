@@ -45,6 +45,15 @@ class Snake {
         }
     }
 
+    tailCollision() {
+        const hasNotCollided = this.tail.map(({ x, y }) => {
+            console.log()
+            return this.x == x && this.y == y;
+        })
+        .every(value => value == false)
+        return !hasNotCollided
+    }
+
     eat(food) {
         const hasCollided = food.x == this.x && food.y == this.y;
         if (hasCollided) { this.total++; }

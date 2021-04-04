@@ -34,17 +34,24 @@ class GameEngine {
         this.snake.draw();
 
         // Handle Collision
+        if (this.snake.tailCollision()) {
+            this.currentScore = 0;
+            this.snake.total = 0;
+            this.snake.tail = []
+            this.updateScore();
+        }
+
         if (this.snake.eat(this.food)) {
             const { x, y } = this.randomCoordinates();
             this.food.x = x;
             this.food.y = y;
-            this.updateScore();
+            this.currentScore++;
             this.snake.total = this.currentScore;
+            this.updateScore();
         }
     }
 
     updateScore() {
-        this.currentScore++;
         if (this.currentScore > this.highestScore) { this.highestScore = this.currentScore; }
         const currentScore = document.getElementById("current-score");
         const highestScore = document.getElementById("highest-score");
